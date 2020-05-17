@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse</title>
+</head>
+<body>
+    <form method="post">
+        <label for="cid">Customer ID:</label>
+        <input type="number" id="cid" name="cid">
+        {% csrf_token %}
+        <button type="submit">Find</button>
+    </form>
+</br>
+    <form method="post">
+        <label for="source_name">Source Name:</label>
+        <input type="text" id="source_name" name="source_name">
+        {% csrf_token %}
+        <button type="submit">Find</button>
+    </form>
+</br>
+    <form method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
+        {% csrf_token %}
+        <button type="submit">Find</button>
+    </form>
+</br>
+<form method="post">
+    <label for="radius">Radius (in Km) :</label>
+    <input type="number" name="radius" required id="id_radius">
+    <label for="id_position_0"> Position:</label>
+    <input type="text" name="position_0" class="geoposition" required id="id_position_0">
+    <input type="text" name="position_1" class="geoposition" required id="id_position_1">
+    {% csrf_token %}
+    <button type="submit">Find</button>
+</form><br>
+<form method="post">
+    <label for="sort">Sort By :</label>
+    <select id="sort" name= 'sort'>
+    <option value="cid">Customer ID</option>
+    <option value="cname">Customer Name</option>
+    <option value="title">Title</option>
+    <option value="source_name">Source name</option>
+    </select>
+    {% csrf_token %}
+    <button type="submit">Sort</button>
+</form>
+    {% if valid is 0 %}
+    <script>alert("{{ alert_msg }}");</script>
+    {% endif %} 
+    {% for cb in cbs %}
+    <ul>
+        <li> Customer ID : {{ cb.customer.id }}</li>
+        <li> Customer Name : {{ cb.customer.name }}</li>
+        <li> Title: {{ cb.bookmark.title }}</li>
+        <li> Source Name :{{ cb.bookmark.source_name }} </li>
+        <li> URL : {{ cb.bookmark.url }}</li>
+    </ul>
+    {% endfor %}
+
+
+</body>
+</html>

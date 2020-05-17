@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+</head>
+<body>
+    <p>For creating a new bookmark for a customer the URL is /api/create/customer_name.</p>
+    <p>For choosing existing customer and bookmark and creating a new combination the URL is /api/create. </p>
+    <form method="post">
+        <table>
+            {{ form.as_table }}
+        </table>
+        {% csrf_token %}
+        <button type="submit" onclick="alert(' Entry added ')">Create</button>
+    </form>
+</body>
+</html>
